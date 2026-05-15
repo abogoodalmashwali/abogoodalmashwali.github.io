@@ -28,12 +28,12 @@
 
     <script>
         const Pi = window.Pi;
-        Pi.init({ version: "1.5", sandbox: false });
+        Pi.init({ version: "2.0", sandbox: false });
 
         async function login() {
             try {
                 const scopes = ['username', 'payments'];
-                const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
+                const auth = await Pi.authenticate(['username'], function(p){});
                 document.getElementById('status').innerText = "تم تسجيل الدخول بنجاح: " + auth.user.username;
                 document.getElementById('status').style.color = "green";
             } catch (err) {
