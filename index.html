@@ -6,11 +6,10 @@
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 </head>
 <body style="text-align: center; font-family: Arial; padding-top: 50px; background-color: #f4f4f9;">
-    <div style="background: white; padding: 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <div style="background: white; padding: 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
         <h1>Pi Auto Market 2026</h1>
         <p>بإشراف: أبو جود المشولي</p>
         <p id="status">جاري الاتصال بشبكة Pi...</p>
-        <button onclick="login()" style="padding: 15px 25px; background: #5e2d91; color: white; border: none; border-radius: 8px; cursor: pointer;">تسجيل الدخول عبر Pi Browser</button>
     </div>
 
     <script>
@@ -19,7 +18,7 @@
 
         async function login() {
             try {
-                const auth = await Pi.authenticate(['username'], function(p){});
+                const auth = await Pi.authenticate(['username'], function(p) {});
                 document.getElementById('status').innerText = "تم تسجيل الدخول بنجاح: " + auth.user.username;
                 document.getElementById('status').style.color = "green";
             } catch (err) {
@@ -27,8 +26,10 @@
                 document.getElementById('status').style.color = "red";
             }
         }
-        // تشغيل الفحص تلقائياً عند التحميل
-        login();
+        
+        window.onload = function() {
+            login();
+        };
     </script>
 </body>
 </html>
