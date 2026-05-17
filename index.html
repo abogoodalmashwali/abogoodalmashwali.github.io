@@ -61,11 +61,23 @@
 </div>
 
 <script>
-    // تهيئة ميكانيكية الـ SDK الخاصة بـ Pi
+    // تهيئة ميكانيكية الـ SDK الخاصة بـ Pi وتشغيل الساندبوكس التجريبي
     Pi.init({ version: "2.0", sandbox: true });
 
     async function makeTestPayment() {
         try {
+            // أولاً: طلب الصلاحيات والتسجيل (Scopes) لحل مشكلة الخطأ
+            const scopes = ['username', 'payments'];
+            
+            function onIncompletePaymentFound(payment) {
+                console.log("هناك معاملة معلقة غير مكتملة:", payment);
+            }
+
+            // تفعيل تسجيل الدخول بالصلاحيات المطلوبة قبل الدفع
+            const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
+            console.log("تم تسجيل الدخول بنجاح للمستخدم:", auth.user.username);
+
+            // ثانياً: استدعاء نافذة الدفع بعد أخذ الصلاحية بنجاح
             const payment = await Pi.createPayment({
                 amount: 1,
                 memo: "تفعيل تطبيق Pi Auto Market 2026",
@@ -88,10 +100,13 @@
                 onError: function(error, payment) { alert("حدث خطأ أثناء الدفع: " + error.message); }
             });
         } catch (err) {
-            alert("خطأ غير متوقع: " + err.message);
+            alert("خطأ أثناء المصادقة: " + err.message);
         }
     }
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
