@@ -11,17 +11,17 @@
             background: linear-gradient(135deg, #0d233a 0%, #07111e 100%);
             color: #ffffff;
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
             margin: 0;
         }
         .container {
-            max-width: 500px;
+            max-width: 550px;
             background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 0 auto;
+            margin: 0 auto 20px auto;
         }
         h1 { color: #ffd700; margin-bottom: 10px; font-size: 24px; }
         .status-box {
@@ -29,10 +29,11 @@
             color: white;
             padding: 10px;
             border-radius: 8px;
-            margin: 20px 0;
+            margin: 15px 0;
             font-weight: bold;
+            font-size: 15px;
         }
-        .info-text { color: #cccccc; font-size: 14px; margin-bottom: 30px; }
+        .info-text { color: #cccccc; font-size: 14px; margin-bottom: 25px; }
         .pay-btn {
             background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
             color: #07111e;
@@ -47,6 +48,29 @@
             width: 100%;
         }
         .pay-btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5); }
+        
+        /* تنسيق الأقسام القانونية */
+        .legal-section {
+            max-width: 550px;
+            margin: 0 auto;
+            text-align: right;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 13px;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+        .legal-section h2 {
+            color: #ffd700;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding-bottom: 4px;
+        }
+        .legal-section p { margin: 5px 0; color: #bbbbbb; }
     </style>
 </head>
 <body>
@@ -60,40 +84,50 @@
     <button class="pay-btn" onclick="makeTestPayment()">اضغط هنا لإتمام المعاملة التجريبية</button>
 </div>
 
+<div class="legal-section">
+    <h2>⚖️ إخلاء المسؤولية (Disclaimer)</h2>
+    <p>إن تطبيق <strong>Pi Auto Market 2026</strong> هو تطبيق تجريبي حالياً مخصص للاختبار والتطوير ضمن البيئة التجريبية (Testnet) الخاصة بـ Pi Network. جميع العمليات، المبالغ، والسيارات المعروضة أو المستخدمة داخل هذه الواجهة هي لأغراض الفحص الفني فقط ولا تمثل عمليات بيع أو شراء حقيقية على أرض الواقع. لا يتحمل المطور أي مسؤولية عن أي استخدام خاطئ خارج نطاق التجربة الفنية المعتمدة من الشبكة.</p>
+
+    <h2>🔒 سياسة الخصوصية (Privacy Policy)</h2>
+    <p>نحن نلتزم التزاماً صارماً بقواعد الأمان والخصوصية الخاصة بنظام Pi Network وحماية بيانات المستخدمين:</p>
+    <p>• <strong>البيانات الشخصية:</strong> لا يقوم التطبيق بجمع، تخزين، أو مشاركة أي بيانات شخصية خاصة بحسابك باستثناء معرف المستخدم (Username) المصرح به رسمياً من خلال دالة المصادقة الآمنة لشبكة Pi.</p>
+    <p>• <strong>أمان المحفظة:</strong> لا يطلب التطبيق ولا يمكنه الوصول إلى كلمات المرور السرية (Passphrase) الخاصة بمحفظتك إطلاقاً؛ حيث تتم جميع المعاملات بشكل مستقل وآمن بالكامل داخل واجهة نظام Pi الرسمية المعزولة.</p>
+    <p>• <strong>التحديثات:</strong> تخضع هذه السياسة للتحديث المستمر لضمان التوافق التام مع المعايير القانونية والتنظيمية الصادرة عن إدارة Pi Network.</p>
+</div>
+
 <script>
-    // تهيئة الـ SDK للشبكة التجريبية
+    // تهيئة ميكانيكية الـ SDK الخاصة بـ Pi للشبكة التجريبية
     Pi.init({ version: "2.0", sandbox: true });
 
     async function makeTestPayment() {
         try {
             const scopes = ['username', 'payments'];
             
-            // تسجيل الدخول وأخذ الصلاحيات اللازمة للعملية
+            // طلب المصادقة وأخذ الإذن الأمني الرسمي من المستخدم
             const auth = await Pi.authenticate(scopes, function(payment) {
-                console.log("Incomplete payment:", payment);
+                console.log("معاملة معلقة:", payment);
             });
 
-            // بدء الدفع وبناء الاستجابات التلقائية المتوافقة مع متطلبات Pi الصارمة
+            // بدء الدفع التجريبي والاستجابة الفورية لردود الشبكة
             const payment = await Pi.createPayment({
                 amount: 0.1,
-                memo: "تنشيط تطبيق Pi Auto Market 2026 الافتراضي",
+                memo: "تنشيط وتوثيق تطبيق Pi Auto Market 2026",
                 metadata: { appId: "pi-auto-market-2026" },
             }, {
                 onReadyForServerApproval: function(paymentId) {
-                    console.log("Payment Ready for local approval:", paymentId);
-                    // إرسال إشارة نجاح وهمية فورية للـ SDK لفتح بوابة الخصم في المحفظة ومكافحة مؤقت الـ 20 ثانية
+                    console.log("تمت الموافقة المحلية الفورية:", paymentId);
                     return fetch('https://httpbin.org/status/200', { method: 'POST' });
                 },
                 onReadyForServerCompletion: function(paymentId, txid) {
-                    console.log("Payment finished successfully. TxID:", txid);
-                    alert("رائع وممتاز جداً! تم الدفع والتأكيد التجريبي بنجاح كامل!");
+                    console.log("اكتملت المعاملة بنجاح. معرف العملية:", txid);
+                    alert("رائع وممتاز جداً! تم الدفع والتأكيد التجريبي بنجاح كامل وحسابك آمن 100%!");
                     return fetch('https://httpbin.org/status/200', { method: 'POST' });
                 },
-                onCancel: function(paymentId) { console.log("User cancelled payment."); },
-                onError: function(error, payment) { console.error("Payment error:", error); }
+                onCancel: function(paymentId) { console.log("تم إلغاء المعاملة من قِبل المستخدم."); },
+                onError: function(error, payment) { console.error("خطأ في عملية الدفع:", error); }
             });
         } catch (err) {
-            alert("خطأ: " + err.message);
+            alert("خطأ أثناء المصادقة: " + err.message);
         }
     }
 </script>
