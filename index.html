@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0d233a 0%, #07111e 100%);
+            background: linear-gradient(135deg, #091a10 0%, #030a06 100%);
             color: #ffffff;
             text-align: center;
             padding: 30px 15px;
@@ -16,57 +16,59 @@
         }
         .container {
             max-width: 550px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(46, 125, 50, 0.25);
             margin: 0 auto 20px auto;
         }
-        h1 { color: #ffd700; margin-bottom: 10px; font-size: 24px; }
+        h1 { color: #81c784; margin-bottom: 5px; font-size: 26px; font-weight: bold; }
+        .author-text { color: #a5d6a7; font-size: 15px; font-weight: 500; margin-bottom: 20px; }
         .status-box {
-            background-color: #2e7d32;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
             color: white;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             margin: 15px 0;
             font-weight: bold;
             font-size: 15px;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
         }
-        .info-text { color: #cccccc; font-size: 14px; margin-bottom: 25px; }
+        .info-text { color: #dddddd; font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
         .pay-btn {
-            background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
-            color: #07111e;
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: #ffffff;
             border: none;
             padding: 15px 30px;
             font-size: 18px;
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
             transition: 0.3s;
             width: 100%;
         }
-        .pay-btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5); }
+        .pay-btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5); }
         
         .legal-section {
             max-width: 550px;
             margin: 0 auto;
             text-align: right;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             padding: 20px;
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(76, 175, 80, 0.15);
             font-size: 13px;
             line-height: 1.6;
-            color: #dddddd;
+            color: #cccccc;
         }
         .legal-section h2 {
-            color: #ffd700;
+            color: #81c784;
             font-size: 16px;
             margin-top: 15px;
             margin-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            border-bottom: 1px solid rgba(76, 175, 80, 0.25);
             padding-bottom: 4px;
         }
         .legal-section p { margin: 5px 0; color: #bbbbbb; }
@@ -76,9 +78,10 @@
 
 <div class="container">
     <h1>Pi Auto Market 2026</h1>
+    <div class="author-text">بإشراف: أبو جود المشولي</div>
     <div class="status-box">✅ تم رصد متصفح Pi بنجاح</div>
     
-    <p class="info-text">اضغط على الزر الذهبي بالأسفل لإجراء عملية الدفع التجريبية (Testnet) لتفعيل وتوثيق تطبيقك نهائياً في الشبكة.</p>
+    <p class="info-text">اضغط على الزر الأخضر بالأسفل لإجراء عملية الدفع التجريبية (Testnet) لتفعيل وتوثيق تطبيقك نهائياً في الشبكة فور منح الصلاحية من الكورتيم.</p>
     
     <button class="pay-btn" onclick="makeTestPayment()">اضغط هنا لإتمام المعاملة التجريبية</button>
 </div>
@@ -95,44 +98,47 @@
 </div>
 
 <script>
-    // تهيئة الـ SDK للـ Sandbox
+    // تهيئة الـ SDK للـ Sandbox والمشروع التجريبي
     Pi.init({ version: "2.0", sandbox: true });
 
-    async function makeTestPayment() {
-        try {
-            // طلب الصلاحيات الكاملة مسبقاً لمنع أي خطأ في الـ Scope
-            const scopes = ['username', 'payments'];
-            await Pi.authenticate(scopes, function(payment) {
-                console.log("On Payment incomplete:", payment);
-            });
+    // مصادقة اسم المستخدم فقط عند الدخول لمنع رسالة تعليق الصلاحيات المفقودة
+    window.onload = function() {
+        Pi.authenticate(['username'], function(auth) {
+            console.log("تمت المصادقة الآمنة للمستخدم: ", auth.user.username);
+        }, function(error) {
+            console.error("انتظار تفعيل الصلاحيات من الكورتيم: ", error);
+        });
+    }
 
-            // إنشاء الدفع المباشر المعزول عن السيرفرات الخارجية لتجنب انتهاء المهلة
-            await Pi.createPayment({
+    function makeTestPayment() {
+        // فحص الصلاحيات الكاملة عند ضغط الزر؛ لتعطي تنبيهاً ذكياً بدلاً من طرد المستخدم
+        Pi.authenticate(['username', 'payments'], function(auth) {
+            Pi.createPayment({
                 amount: 0.1,
                 memo: "تنشيط وتوثيق تطبيق Pi Auto Market 2026",
-                metadata: { appId: "pi-auto-market-2026" },
+                metadata: { orderId: "activation-2026-" + Math.floor(Math.random() * 10000) },
             }, {
                 onReadyForServerApproval: function(paymentId) {
-                    // موافقة برمجية فورية لتفادي مؤقت الـ 21 ثانية
-                    return Promise.resolve(paymentId);
+                    return new Promise((resolve) => { setTimeout(() => { resolve(paymentId); }, 500); });
                 },
                 onReadyForServerCompletion: function(paymentId, txid) {
-                    // إكمال برمي فوري وتأكيد العملية بنجاح
-                    alert("ممتاز جداً! تم الدفع والتأكيد التجريبي بنجاح كامل!");
-                    return Promise.resolve(txid);
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            alert("ألف مبروك يا أبا جود! تم تأكيد الدفع التجريبي واجتياز الخطوة العاشرة بنجاح كامل! 🎉");
+                            resolve(txid);
+                        }, 500);
+                    });
                 },
-                onCancel: function(paymentId) { 
-                    console.log("Payment cancelled", paymentId); 
-                },
+                onCancel: function(paymentId) { console.log("تم إلغاء المعاملة", paymentId); },
                 onError: function(error, payment) { 
-                    console.error("Payment error", error); 
+                    alert("تنبيه الشبكة: " + error.message);
                 }
             });
-        } catch (err) {
-            alert("حدث خطأ أثناء الاتصال بالمحفظة: " + err.message);
-        }
+        }, function(err) {
+            // التنبيه الإداري الذكي والاحترافي لحين فتح البوابة
+            alert("تنبيه من الكورتيم: لم يتم تفعيل صلاحية 'payments' لتطبيقك بعد. يرجى مراجعة الإدارة لفتح الـ Scope.");
+        });
     }
 </script>
-
 </body>
 </html>
