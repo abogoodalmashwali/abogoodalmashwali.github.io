@@ -8,10 +8,10 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #091a10 0%, #030a06 100%);
+            background: linear-gradient(135deg, #0f0c1b 0%, #201335 100%);
             color: #ffffff;
             text-align: center;
-            padding: 30px 15px;
+            padding: 20px;
             margin: 0;
         }
         .container {
@@ -23,8 +23,15 @@
             border: 1px solid rgba(46, 125, 50, 0.25);
             margin: 0 auto 20px auto;
         }
-        h1 { color: #81c784; margin-bottom: 5px; font-size: 26px; font-weight: bold; }
-        .author-text { color: #a5d6a7; font-size: 15px; font-weight: 500; margin-bottom: 20px; }
+        h1 {
+            color: #81c784;
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+        .author-text {
+            color: #a5d6a7;
+            font-size: 15px;
+        }
         .status-box {
             background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
             color: white;
@@ -32,89 +39,83 @@
             border-radius: 8px;
             margin: 15px 0;
             font-weight: bold;
-            font-size: 15px;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
         }
-        .info-text { color: #dddddd; font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
-        .pay-btn {
-            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
-            color: #ffffff;
-            border: none;
-            padding: 15px 30px;
+        .car-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #81c784;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .car-title {
             font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        .btn {
+            background: #81c784;
+            color: #111;
+            border: none;
+            padding: 10px 20px;
+            font-size: 15px;
             font-weight: bold;
-            border-radius: 30px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-            transition: 0.3s;
             width: 100%;
         }
-        .pay-btn:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5); }
-        
-        .legal-section {
-            max-width: 550px;
-            margin: 0 auto;
-            text-align: right;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(76, 175, 80, 0.15);
-            font-size: 13px;
-            line-height: 1.6;
-            color: #cccccc;
+        .user-info {
+            font-size: 14px;
+            color: #a5d6a7;
+            margin-top: 10px;
         }
-        .legal-section h2 {
-            color: #81c784;
-            font-size: 16px;
-            margin-top: 15px;
-            margin-bottom: 8px;
-            border-bottom: 1px solid rgba(76, 175, 80, 0.25);
-            padding-bottom: 4px;
-        }
-        .legal-section p { margin: 5px 0; color: #bbbbbb; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Pi Auto Market 2026</h1>
-    <div class="author-text">بإشراف: أبو جود المشولي</div>
-    <div class="status-box">✅ تم رصد متصفح Pi بنجاح</div>
-    
-    <p class="info-text">اضغط على الزر الأخضر بالأسفل لإجراء عملية الدفع التجريبية (Testnet) لتفعيل وتوثيق تطبيقك نهائياً في الشبكة فور منح الصلاحية من الكورتيم.</p>
-    
-    <button class="pay-btn" onclick="makeTestPayment()">اضغط هنا لإتمام المعاملة التجريبية</button>
-</div>
+    <div class="container">
+        <h1>Pi Auto Market 2026</h1>
+        <div class="author-text">إشراف: أبو جود المشولي</div>
+        
+        <div class="status-box">
+            ✅ تم رصد متصفح Pi بنجاح
+        </div>
 
-<div class="legal-section">
-    <h2>⚖️ إخلاء المسؤولية (Disclaimer)</h2>
-    <p>إن تطبيق <strong>Pi Auto Market 2026</strong> هو تطبيق تجريبي حالياً مخصص للاختبار والتطوير ضمن البيئة التجريبية (Testnet) الخاصة بـ Pi Network. جميع العمليات، المبالغ، والسيارات المعروضة أو المستخدمة داخل هذه الواجهة هي لأغراض الفحص الفني فقط ولا تمثل عمليات بيع أو شراء حقيقية على أرض الواقع. لا يتحمل المطور أي مسؤولية عن أي استخدام خاطئ خارج نطاق التجربة الفنية المعتمدة من الشبكة.</p>
+        <div id="username-display" class="user-info">جاري تسجيل الدخول عبر Pi...</div>
 
-    <h2>🔒 سياسة الخصوصية (Privacy Policy)</h2>
-    <p>نحن نلتزم التزاماً صارماً بقواعد الأمان والخصوصية الخاصة بنظام Pi Network وحماية بيانات المستخدمين:</p>
-    <p>• <strong>البيانات الشخصية:</strong> لا يقوم التطبيق بجمع، تخزين، أو مشاركة أي بيانات شخصية خاصة بحسابك باستثناء معرف المستخدم (Username) المصرح به رسمياً من خلال دالة المصادقة الآمنة لشبكة Pi.</p>
-    <p>• <strong>أمان المحفظة:</strong> لا يطلب التطبيق ولا يمكنه الوصول إلى كلمات المرور السرية (Passphrase) الخاصة بمحفظتك إطلاقاً؛ حيث تتم جميع المعاملات بشكل مستقل وآمن بالكامل داخل واجهة نظام Pi الرسمية المعزولة.</p>
-    <p>• <strong>التحديثات:</strong> تخضع هذه السياسة للتحديث المستمر لضمان التوافق التام مع المعايير القانونية والتنظيمية الصادرة عن إدارة Pi Network.</p>
-</div>
+        <div class="car-card">
+            <div class="car-title">لكزس LX 600 - موديل 2025</div>
+            <button class="btn" onclick="orderCar('Lexus LX 600')">طلب استفسار عبر الواتساب</button>
+        </div>
+    </div>
 
-<script>
-    // تهيئة الـ SDK للـ Sandbox والمشروع التجريبي
-    Pi.init({ version: "2.0", sandbox: true });
+    <script>
+        // تشغيل Pi SDK وعمل المصادقة التلقائية المطلوبة للتوثيق
+        try {
+            Pi.init({ version: "2.0", sandbox: true });
+            
+            // الدالة السحرية التي يطلبها النظام للتحقق
+            const scopes = ['username'];
+            
+            function onIncompletePaymentFound(payment) {
+                console.log("Incomplete payment found", payment);
+            }
 
-    // مصادقة اسم المستخدم بسلاسة عند دخول الصفحة لضمان استقرار الواجهة
-    window.onload = function() {
-        Pi.authenticate(['username'], function(auth) {
-            console.log("تمت المصادقة الآمنة للمستخدم: ", auth.user.username);
-        }, function(error) {
-            console.error("انتظار تفعيل الصلاحيات من الكورتيم: ", error);
-        });
-    }
+            Pi.authenticate(scopes, onIncompletePaymentFound).then(function(auth) {
+                document.getElementById('username-display').innerText = "مرحباً بك: " + auth.user.username;
+                console.log("تمت المصادقة بنجاح للمستخدم: " + auth.user.username);
+            }).catch(function(error) {
+                document.getElementById('username-display').innerText = "يرجى الفتح من داخل متصفح Pi Browser";
+                console.error(error);
+            });
 
-    // دالة الزر: تعطي تنبيهاً إدارياً ذكياً وموجهاً يحمي التطبيق لحين تفعيل الصلاحيات
-    function makeTestPayment() {
-        alert("تنبيه من إدارة الشبكة:\n\nتطبيقك 'Pi Auto Market 2026' مستوفٍ للشروط البرمجية والقانونية بالكامل.\n\nبانتظار موافقة الكورتيم (Core Team) لتفعيل صلاحية بوابة الدفع الرسمية (Payments Scope) لربط الـ SDK ومباشرة المعاملات التجريبية.");
-    }
-</script>
+        } catch (e) {
+            console.log("خطأ في تشغيل البيئة التجريبية");
+        }
 
+        function orderCar(carName) {
+            var message = encodeURIComponent("مرحباً أبو جود، أريد الاستفسار عن سيارة " + carName + " عبر تطبيق Pi Auto Market");
+            window.open("https://wa.me/96775118667?text=" + message, '_blank');
+        }
+    </script>
 </body>
 </html>
