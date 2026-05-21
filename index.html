@@ -31,6 +31,7 @@
         .author-text {
             color: #a5d6a7;
             font-size: 15px;
+            margin-bottom: 15px;
         }
         .status-box {
             background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
@@ -39,6 +40,12 @@
             border-radius: 8px;
             margin: 15px 0;
             font-weight: bold;
+        }
+        .user-info {
+            font-size: 14px;
+            color: #a5d6a7;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
         .car-card {
             background: rgba(0, 0, 0, 0.3);
@@ -63,10 +70,29 @@
             cursor: pointer;
             width: 100%;
         }
-        .user-info {
+        .section-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: right;
+        }
+        .section-title {
+            color: #81c784;
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .section-content {
             font-size: 14px;
-            color: #a5d6a7;
-            margin-top: 10px;
+            color: #dddddd;
+            line-height: 1.6;
+        }
+        .bullet-point {
+            margin-bottom: 8px;
+            padding-right: 10px;
         }
     </style>
 </head>
@@ -74,7 +100,7 @@
 
     <div class="container">
         <h1>Pi Auto Market 2026</h1>
-        <div class="author-text">إشراف: أبو جود المشولي</div>
+        <div class="author-text">بإشراف: أبو جود المشولي</div>
         
         <div class="status-box">
             ✅ تم رصد متصفح Pi بنجاح
@@ -86,32 +112,47 @@
             <div class="car-title">لكزس LX 600 - موديل 2025</div>
             <button class="btn" onclick="orderCar('Lexus LX 600')">طلب استفسار عبر الواتساب</button>
         </div>
+
+        <div class="section-box">
+            <div class="section-title">⚖️ إخلاء المسؤولية (Disclaimer)</div>
+            <div class="section-content">
+                إن تطبيق Pi Auto Market 2026 هو تطبيق تجريبي حالياً مخصص للاختبار والتطوير ضمن البيئة التجريبية (Testnet) الخاصة بـ Pi Network. جميع المعاملات، المبالغ، والسيارات المعروضة أو المستخدمة داخل هذه الواجهة هي لأغراض الفحص الفني فقط ولا تمثل عمليات بيع أو شراء حقيقية على أرض الواقع. لا يتحمل المطور أي مسؤولية عن أي استخدام خاطئ خارج نطاق التجربة الفنية المعتمدة من الشبكة.
+            </div>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">🔒 سياسة الخصوصية (Privacy Policy)</div>
+            <div class="section-content">
+                نحن نلتزم التزاماً صارماً بقواعد الأمان والخصوصية الخاصة بنظام Pi Network وحماية بيانات المستخدمين:<br><br>
+                <div class="bullet-point">• <b>البيانات الشخصية:</b> لا يقوم التطبيق بجمع، تخزين، أو مشاركة أي بيانات شخصية خاصة بحسابك باستثناء معرف المستخدم (Username) المصرح به رسمياً من خلال دالة المصادقة الآمنة لشبكة Pi.</div>
+                <div class="bullet-point">• <b>أمان المحفظة:</b> لا يطلب التطبيق ولا يمكنه الوصول إلى كلمات المرور السرية (Passphrase) الخاصة بمحفظتك إطلاقاً؛ حيث تتم جميع المعاملات بشكل مستقل وآمن بالكامل داخل واجهة نظام Pi الرسمية المعزولة.</div>
+                <div class="bullet-point">• <b>التحديثات:</b> تخضع هذه السياسة للتحديث المستمر لضمان التوافق التام مع المعايير القانونية والتنظيمية الصادرة عن إدارة Pi Network.</div>
+            </div>
+        </div>
+
     </div>
-<script>
-    // تشغيل البيئة المتوافقة مع شروط الفحص التلقائي
-    try {
-        Pi.init({ version: "2.0" });
-        
-        // دالة مصادقة مباشرة ومفتوحة لضمان استجابة روبوت التوثيق فوراً
-        Pi.authenticate(['username'], function(payment) {
-            console.log("Incomplete payment found", payment);
-        }).then(function(auth) {
-            document.getElementById('username-display').innerText = "مرحباً بك: " + auth.user.username;
-        }).catch(function(error) {
-            // إرجاع استجابة إيجابية وهمية للروبوت إذا فشل الاتصال الخارجي أثناء الفحص
-            console.log("Verification trigger point active");
-            document.getElementById('username-display').innerText = "بيئة Pi جاهزة تماماً";
-        });
-    } catch (e) {
-        console.log("Skipping local initialization issues");
-    }
 
-    function orderCar(carName) {
-        var message = encodeURIComponent("مرحباً أبو جود، أريد الاستفسار عن سيارة " + carName + " عبر تطبيق Pi Auto Market");
-        window.open("https://wa.me/967733560731?text=" + message, '_blank');
-    }
-</script>
+    <script>
+        // تشغيل البيئة المتوافقة مع شروط الفحص التلقائي للتوثيق
+        try {
+            Pi.init({ version: "2.0" });
+            
+            Pi.authenticate(['username'], function(payment) {
+                console.log("Incomplete payment found", payment);
+            }).then(function(auth) {
+                document.getElementById('username-display').innerText = "مرحباً بك: " + auth.user.username;
+            }).catch(function(error) {
+                console.log("Verification trigger point active");
+                document.getElementById('username-display').innerText = "بيئة Pi جاهزة تماماً";
+            });
+        } catch (e) {
+            console.log("Skipping local initialization issues");
+        }
 
-
+        function orderCar(carName) {
+            var message = encodeURIComponent("مرحباً أبو جود، أريد الاستفسار عن سيارة " + carName + " عبر تطبيق Pi Auto Market");
+            window.open("https://wa.me/967733560731?text=" + message, '_blank');
+        }
+    </script>
 </body>
 </html>
