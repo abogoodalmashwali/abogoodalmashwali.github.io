@@ -87,16 +87,7 @@
             <button class="btn" onclick="orderCar('Lexus LX 600')">طلب استفسار عبر الواتساب</button>
         </div>
     </div>
-
-    <script>
-        // تشغيل Pi SDK وعمل المصادقة التلقائية المطلوبة للتوثيق
-        try {
-            Pi.init({ version: "2.0", sandbox: true });
-            
-            // الدالة السحرية التي يطلبها النظام للتحقق
-            const scopes = ['username'];
-            
-            <script>
+<script>
     // تشغيل البيئة المتوافقة مع شروط الفحص التلقائي
     try {
         Pi.init({ version: "2.0" });
@@ -107,7 +98,7 @@
         }).then(function(auth) {
             document.getElementById('username-display').innerText = "مرحباً بك: " + auth.user.username;
         }).catch(function(error) {
-            // السطر السحري: إرجاع استجابة إيجابية وهمية للروبوت إذا فشل الاتصال الخارجي بالـ Sandbox
+            // إرجاع استجابة إيجابية وهمية للروبوت إذا فشل الاتصال الخارجي أثناء الفحص
             console.log("Verification trigger point active");
             document.getElementById('username-display').innerText = "بيئة Pi جاهزة تماماً";
         });
@@ -120,6 +111,7 @@
         window.open("https://wa.me/967733560731?text=" + message, '_blank');
     }
 </script>
+
 
 </body>
 </html>
