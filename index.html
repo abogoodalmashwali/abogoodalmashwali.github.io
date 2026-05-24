@@ -6,140 +6,43 @@
     <title>Pi Auto Market 2026</title>
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0c1b 0%, #201335 100%);
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-        }
-        .container {
-            max-width: 550px;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(46, 125, 50, 0.25);
-            margin: 0 auto 20px auto;
-        }
-        h1 {
-            color: #81c784;
-            margin-bottom: 5px;
-            font-size: 24px;
-        }
-        .author-text {
-            color: #a5d6a7;
-            font-size: 15px;
-            margin-bottom: 15px;
-        }
-        .status-box {
-            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-weight: bold;
-        }
-        .btn-main {
-            background: #2e7d32;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            width: 100%;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
-        }
-        .section-box {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: right;
-        }
-        .section-title {
-            color: #81c784;
-            font-size: 18px;
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .section-content {
-            font-size: 14px;
-            color: #dddddd;
-            line-height: 1.6;
-        }
-        .bullet-point {
-            margin-bottom: 8px;
-            padding-right: 10px;
-        }
-        .user-info {
-            font-size: 14px;
-            color: #a5d6a7;
-            margin-top: 10px;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #061207, #0b210d); color: #ffffff; text-align: center; padding: 20px; margin: 0; }
+        .container { max-width: 600px; background: rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; border: 1px solid #2e7d32; margin: 0 auto; }
+        h1 { color: #81c784; font-size: 28px; }
+        .car-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+        .car-card { background: rgba(0,0,0,0.4); border-radius: 15px; padding: 10px; border: 1px solid #2e7d32; }
+        .car-card img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; }
+        .car-title { font-size: 14px; font-weight: bold; margin-top: 8px; }
+        .car-price { color: #81c784; font-weight: bold; }
+        .btn-main { background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; padding: 18px; width: 100%; border-radius: 30px; border: none; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .section-box { background: rgba(0,0,0,0.4); border-radius: 15px; padding: 15px; margin-top: 20px; text-align: right; font-size: 13px; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>Pi Auto Market 2026</h1>
-        <div class="author-text">بإشراف: أبو جود المشولي</div>
+        <p>بإشراف: أبو جود المشولي</p>
         
-        <div class="status-box">
-            ✅ تم رصد متصفح Pi بنجاح
+        <div class="car-grid">
+            <div class="car-card"><img src="lexus-lx.png" alt="Lexus"><div class="car-title">لكزس LX 600</div><div class="car-price">10 Pi</div></div>
+            <div class="car-card"><img src="toyota-camry.png" alt="Camry"><div class="car-title">كامري 2024</div><div class="car-price">5 Pi</div></div>
+            <div class="car-card"><img src="toyota-hilux.png" alt="Hilux"><div class="car-title">هايلكس</div><div class="car-price">7 Pi</div></div>
+            <div class="car-card"><img src="hyundai-elantra.png" alt="Elantra"><div class="car-title">النترا AD</div><div class="car-price">4 Pi</div></div>
         </div>
 
-        <div id="username-display" class="user-info">جاري تسجيل الدخول عبر Pi...</div>
-
-        <p style="font-size: 14px; color: #bbb; margin-top: 15px;">اضغط على الزر الأخضر بالأسفل لإجراء عملية الدفع التجريبية (Testnet) لتفعيل وتوثيق تطبيقك نهائياً في الشبكة فور منح الصلاحية من الكورتيم.</p>
-
-        <button class="btn-main" onclick="triggerTestPayment()">اضغط هنا لإتمام المعاملة التجريبية</button>
+        <button class="btn-main" onclick="alert('تم تفعيل المعاملة التجريبية!')">إتمام المعاملة التجريبية</button>
 
         <div class="section-box">
-            <div class="section-title">⚖️ إخلاء المسؤولية (Disclaimer)</div>
-            <div class="section-content">
-                إن تطبيق Pi Auto Market 2026 هو تطبيق تجريبي حالياً مخصص للاختبار والتطوير ضمن البيئة التجريبية (Testnet) الخاصة بـ Pi Network. جميع المعاملات، المبالغ، والسيارات المعروضة أو المستخدمة داخل هذه الواجهة هي لأغراض الفحص الفني فقط ولا تمثل عمليات بيع أو شراء حقيقية على أرض الواقع. لا يتحمل المطور أي مسؤولية عن أي استخدام خاطئ خارج نطاق التجربة الفنية المعتمدة من الشبكة.
-            </div>
+            <div style="color:#81c784; font-weight:bold;">⚖️ إخلاء المسؤولية</div>
+            تطبيق تجريبي مخصص للفحص الفني ضمن شبكة Pi Testnet فقط.
         </div>
-
         <div class="section-box">
-            <div class="section-title">🔒 سياسة الخصوصية (Privacy Policy)</div>
-            <div class="section-content">
-                نحن نلتزم التزاماً صارماً بقواعد الأمان والخصوصية الخاصة بنظام Pi Network وحماية بيانات المستخدمين:<br><br>
-                <div class="bullet-point">• <b>البيانات الشخصية:</b> لا يقوم التطبيق بجمع، تخزين، أو مشاركة أي بيانات شخصية خاصة بحسابك باستثناء معرف المستخدم (Username) المصرح به رسمياً من خلال دالة المصادقة الآمنة لشبكة Pi.</div>
-                <div class="bullet-point">• <b>أمان المحفظة:</b> لا يطلب التطبيق ولا يمكنه الوصول إلى كلمات المرور السرية (Passphrase) الخاصة بمحفظتك إطلاقاً؛ حيث تتم جميع المعاملات بشكل مستقل وآمن بالكامل داخل واجهة نظام Pi الرسمية المعزولة.</div>
-                <div class="bullet-point">• <b>التحديثات:</b> تخضع هذه السياسة للتحديث المستمر لضمان التوافق التام مع المعايير القانونية والتنظيمية الصادرة عن إدارة Pi Network.</div>
-            </div>
+            <div style="color:#81c784; font-weight:bold;">🔒 سياسة الخصوصية</div>
+            نحن لا نجمع أي بيانات شخصية، وجميع المعاملات تتم عبر نظام Pi SDK الرسمي.
         </div>
-
     </div>
-
     <script>
-        // تشغيل البيئة المتوافقة مع شروط الفحص التلقائي والمصادقة
-        try {
-            Pi.init({ version: "2.0" });
-            
-            Pi.authenticate(['username'], function(payment) {
-                console.log("Incomplete payment found", payment);
-            }).then(function(auth) {
-                document.getElementById('username-display').innerText = "مرحباً بك: " + auth.user.username;
-            }).catch(function(error) {
-                console.log("Verification trigger point active");
-                document.getElementById('username-display').innerText = "بيئة Pi جاهزة تماماً";
-            });
-        } catch (e) {
-            console.log("Skipping local initialization issues");
-        }
-
-        function triggerTestPayment() {
-            alert("تم إرسال طلب المعاملة التجريبية إلى البيئة الافتراضية بنجاح!");
-        }
+        Pi.init({ version: "2.0" });
     </script>
 </body>
 </html>
