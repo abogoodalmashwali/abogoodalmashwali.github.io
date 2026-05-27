@@ -22,46 +22,70 @@
     <div class="container">
         <h1>Pi Auto Market 2026</h1>
         <p>بإشراف: أبو جود المشولي</p>
-        
-                <div class="car-grid">
-        <div class="car-card" onclick="alert('تم تفعيل المعاملة التجريبية!')" style="cursor: pointer;">
-            <img src="lexus-lx.png" alt="Lexus">
-            <div class="car-title">لكزس LX 600</div>
-            <div class="car-price">Pi 10</div>
-        </div>
-        <div class="car-card" onclick="alert('تم تفعيل المعاملة التجريبية!')" style="cursor: pointer;">
-            <img src="toyota-camry.png" alt="Camry">
-            <div class="car-title">كامري 2024</div>
-            <div class="car-price">Pi 5</div>
-        </div>
-        <div class="car-card" onclick="alert('تم تفعيل المعاملة التجريبية!')" style="cursor: pointer;">
-            <img src="toyota-hilux.png" alt="HiLux">
-            <div class="car-title">هايلكس</div>
-            <div class="car-price">Pi 7</div>
-        </div>
-        <div class="car-card" onclick="alert('تم تفعيل المعاملة التجريبية!')" style="cursor: pointer;">
-            <img src="hyundai-elantra.png" alt="Elantra">
-            <div class="car-title">النترا AD</div>
-            <div class="car-price">Pi 4</div>
-        </div>
-    </div>
 
+        <div class="car-grid">
+            <div class="car-card" onclick="createTestPayment()" style="cursor: pointer;">
+                <img src="lexus-lx.png" alt="Lexus">
+                <div class="car-title">لكزس LX 600</div>
+                <div class="car-price">Pi 10</div>
+            </div>
+            <div class="car-card" onclick="createTestPayment()" style="cursor: pointer;">
+                <img src="toyota-camry.png" alt="Camry">
+                <div class="car-title">كامري 2024</div>
+                <div class="car-price">Pi 5</div>
+            </div>
+            <div class="car-card" onclick="createTestPayment()" style="cursor: pointer;">
+                <img src="toyota-hilux.png" alt="HiLux">
+                <div class="car-title">هايلكس</div>
+                <div class="car-price">Pi 7</div>
+            </div>
+            <div class="car-card" onclick="createTestPayment()" style="cursor: pointer;">
+                <img src="hyundai-elantra.png" alt="Elantra">
+                <div class="car-title">النترا AD</div>
+                <div class="car-price">Pi 4</div>
+            </div>
+        </div>
 
         <button class="btn-main" onclick="createTestPayment()">إتمام المعاملة التجريبية</button>
 
-
         <div class="section-box">
-            <div style="color:#81c784; font-weight:bold;">⚖️ إخلاء المسؤولية</div>
+            <div style="color: #81c784; font-weight: bold;">⚖️ إخلاء المسؤولية:</div>
             تطبيق تجريبي مخصص للفحص الفني ضمن شبكة Pi Testnet فقط.
         </div>
         <div class="section-box">
-            <div style="color:#81c784; font-weight:bold;">🔒 سياسة الخصوصية</div>
+            <div style="color: #81c784; font-weight: bold;">🔒 سياسة الخصوصية:</div>
             نحن لا نجمع أي بيانات شخصية، وجميع المعاملات تتم عبر نظام Pi SDK الرسمي.
         </div>
     </div>
+
     <script>
-    // تشغيل نظام المصادقة الأمن
-    Pi.init({ version: "2.0" });
+        // تشغيل نظام المصادقة الأمن
+        Pi.init({ version: "2.0" });
+
+        // دالة الدفع التجريبية الرسمية لفتح المحفظة وتخطي الخطوة العاشرة
+        function createTestPayment() {
+            Pi.createPayment({
+                amount: 1,
+                memo: "Test Transaction for Step 10",
+                metadata: { step: "10" }
+            }, {
+                onReadyForServerApproval: function(paymentId) {
+                    alert("تمت الموافقة المبدئية! رقم المعاملة: " + paymentId);
+                },
+                onReadyForServerCompletion: function(paymentId, txid) {
+                    alert("تمت المعاملة بنجاح! تحقَّق من لوحة المطورين الآن.");
+                },
+                onCancel: function(paymentId) {
+                    alert("تم إلغاء المعاملة.");
+                },
+                onError: function(error, paymentId) {
+                    alert("حدث خطأ أو لم يتم فتح المحفظة بشكل صحيح.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
 
     // دالة الدفع التجريبية لتخطي الخطوة العاشرة
     function createTestPayment() {
