@@ -47,7 +47,8 @@
     </div>
 
 
-        <button class="btn-main" onclick="alert('تم تفعيل المعاملة التجريبية!')">إتمام المعاملة التجريبية</button>
+        <button class="btn-main" onclick="createTestPayment()">إتمام المعاملة التجريبية</button>
+
 
         <div class="section-box">
             <div style="color:#81c784; font-weight:bold;">⚖️ إخلاء المسؤولية</div>
@@ -59,8 +60,32 @@
         </div>
     </div>
     <script>
-        // تشغيل نظام المصادقة الآمن
-        Pi.init({ version: "2.0" });
-    </script>
+    // تشغيل نظام المصادقة الأمن
+    Pi.init({ version: "2.0" });
+
+    // دالة الدفع التجريبية لتخطي الخطوة العاشرة
+    function createTestPayment() {
+        Pi.createPayment({
+            amount: 1,
+            memo: "Test Transaction for Step 10",
+            metadata: { step: "10" }
+        }, {
+            onReadyForServerApproval: function(paymentId) {
+                // نخبر السيرفر بالموافقة المبدئية
+                alert("تمت الموافقة المبدئية! رقم المعاملة: " + paymentId);
+            },
+            onReadyForServerCompletion: function(paymentId, txid) {
+                alert("تمت المعاملة بنجاح! تحقَّق من لوحة المطورين الآن.");
+            },
+            onCancel: function(paymentId) {
+                alert("تم إلغاء المعاملة.");
+            },
+            onError: function(error, paymentId) {
+                alert("حدث خطأ أثناء الدفع التجريبي.");
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
