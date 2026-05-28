@@ -2,21 +2,16 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pi Auto Market 2026</title>
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <style>
-        /* التنسيقات الخاصة بتصميمك الأصلي */
-        body { font-family: 'Arial', sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; text-align: center; color: #333; }
-        header { background-color: #5b2c91; color: white; padding: 25px; border-bottom: 5px solid #ffa000; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1100px; margin: 20px auto; padding: 0 10px; }
-        .car { background: white; border-radius: 14px; padding: 15px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); text-align: center; }
-        .car img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; }
-        .btn-request { background-color: #5b2c91; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
-        .order-form { background: white; max-width: 520px; margin: 30px auto; padding: 28px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); border-top: 5px solid #ffa000; }
-        .submit-btn { width: 100%; background-color: #25d366; color: white; padding: 14px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
-        .card { background: white; border-radius: 12px; padding: 20px; margin: 15px auto; max-width: 520px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: right; }
-        .legal-disclaimer { background-color: #f9f9f9; padding: 30px 20px; text-align: center; border-top: 1px solid #ddd; margin-top: 40px; font-size: 14px; }
+        body { font-family: sans-serif; background-color: #f8f9fa; text-align: center; }
+        header { background-color: #5b2c91; color: white; padding: 20px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .car { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .car img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; }
+        .btn-pay { background-color: #5b2c91; color: white; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 10px; }
+        .legal { background: #fff; padding: 20px; margin: 20px; border-radius: 10px; border-top: 5px solid #ffa000; }
     </style>
 </head>
 <body>
@@ -27,42 +22,38 @@
 </header>
 
 <div class="gallery">
+    <!-- سيارة 1 -->
     <div class="car">
         <img src="lexus-lx.png" alt="Lexus">
         <h3>Lexus LX 2026</h3>
-        <button class="btn-request" onclick="createPiPayment('Lexus LX 2026')">ادفع 1 Pi للاستفسار</button>
+        <button class="btn-pay" onclick="createPiPayment('Lexus LX 2026')">ادفع 1 Pi للاستفسار</button>
+    </div>
+    <!-- سيارة 2 -->
+    <div class="car">
+        <img src="hyundai-elantra.png" alt="Hyundai">
+        <h3>Hyundai Elantra</h3>
+        <button class="btn-pay" onclick="createPiPayment('Hyundai Elantra')">ادفع 1 Pi للاستفسار</button>
+    </div>
+    <!-- سيارة 3 -->
+    <div class="car">
+        <img src="toyota-camry.png" alt="Toyota">
+        <h3>Toyota Camry</h3>
+        <button class="btn-pay" onclick="createPiPayment('Toyota Camry')">ادفع 1 Pi للاستفسار</button>
     </div>
 </div>
 
-<div class="order-form">
-    <h2>📝 طلب شراء</h2>
-    <input type="text" id="orderName" placeholder="الاسم الكامل" style="width:100%; padding:10px; margin-bottom:10px;">
-    <button type="button" class="submit-btn" onclick="payOrder()">💳 دفع 1 Pi لتأكيد الطلب</button>
-</div>
-
-<div class="card">
-    <h3>🔒 سياسة الخصوصية:</h3>
+<div class="legal">
+    <h3>🔒 سياسة الخصوصية</h3>
     <p>هدفنا الوساطة التقنية الآمنة فقط عبر شبكة Pi.</p>
-</div>
-
-<div class="legal-disclaimer">
     <h4>⚖️ إخلاء مسؤولية قانوني</h4>
     <p>منصة تجريبية، لا نطلب كلمة السر لمحفظتك أبداً.</p>
 </div>
 
 <script>
     Pi.init({ version: "2.0", sandbox: true });
-
     function createPiPayment(carName) {
-        Pi.createPayment({ amount: 1, memo: "استفسار: " + carName, metadata: { car: carName } }, 
-        { onSuccess: function() { alert("تم الدفع!"); }, onError: function(e) { alert("خطأ: " + e); } });
-    }
-
-    function payOrder() {
-        Pi.createPayment({ amount: 1, memo: "طلب شراء", metadata: {} }, 
-        { onSuccess: function() { alert("تم تأكيد الطلب!"); }, onError: function(e) { alert("خطأ"); } });
+        Pi.createPayment({ amount: 1, memo: "استفسار: " + carName }, { onSuccess: function() { alert("تم الدفع!"); } });
     }
 </script>
 </body>
 </html>
-
