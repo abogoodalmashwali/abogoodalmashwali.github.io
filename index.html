@@ -5,45 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pi Auto Market 2026</title>
     <style>
-        /* إضافة لضمان ظهور قسم إخلاء المسؤولية */
-        .legal-disclaimer { 
-            background-color: #f9f9f9; 
-            padding: 30px 20px; 
-            text-align: center; 
-            border-top: 2px solid #5b2c91; 
-            margin-top: 40px; 
-            display: block !important; /* فرض الظهور */
-        }
+        /* التنسيقات لضمان ظهور الموقع بشكل احترافي */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; color: #333; }
+        header { background-color: #5b2c91; color: white; padding: 30px; text-align: center; border-bottom: 5px solid #ffa000; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+        
+        /* تصميم معرض السيارات */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .car-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; padding-bottom: 15px; }
         .car-img { width: 100%; height: 200px; background-size: cover; background-position: center; }
+        
+        /* زر الدفع بـ Pi */
+        .btn-pay { background: #25d366; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 15px; transition: 0.3s; }
+        .btn-pay:hover { background: #1ebe57; }
+
+        /* قسم إخلاء المسؤولية */
+        .footer-legal { background: #fff; padding: 30px; margin-top: 40px; border-top: 5px solid #ffa000; text-align: center; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- معرض السيارات مع الصور المحدثة -->
+<header>
+    <h1>Pi Auto Market 2026</h1>
+    <p>وسيطك الآمن لبيع وشراء السيارات</p>
+</header>
+
+<div class="container">
     <div class="gallery">
-        <div class="car">
+        <div class="car-card">
             <div class="car-img" style="background-image: url('1000245284.jpg');"></div>
             <h3>Lexus LX 2026</h3>
+            <a href="#" class="btn-pay">ادفع 1 Pi</a>
         </div>
-        <div class="car">
+        <div class="car-card">
             <div class="car-img" style="background-image: url('1000245285.jpg');"></div>
             <h3>Toyota Camry 2026</h3>
+            <a href="#" class="btn-pay">ادفع 1 Pi</a>
         </div>
-        <div class="car">
+        <div class="car-card">
             <div class="car-img" style="background-image: url('1000245286.jpg');"></div>
             <h3>Toyota Hilux 2026</h3>
+            <a href="#" class="btn-pay">ادفع 1 Pi</a>
         </div>
-        <div class="car">
+        <div class="car-card">
             <div class="car-img" style="background-image: url('1000245287.jpg');"></div>
             <h3>Hyundai Elantra 2026</h3>
+            <a href="#" class="btn-pay">ادفع 1 Pi</a>
         </div>
     </div>
 
-    <!-- قسم إخلاء المسؤولية -->
-    <div class="legal-disclaimer" id="legalSection">
-        <h4>⚖️ إخلاء مسؤولية قانوني</h4>
-        <p>منصة <strong>Pi Auto Market 2026</strong> هي منصة وسيطة لعرض السيارات. جميع التفاهمات تتم عبر التواصل المباشر لضمان أمان وخصوصية الجميع.</p>
+    <div class="footer-legal">
+        <h3>⚖️ إخلاء مسؤولية قانوني</h3>
+        <p>منصة Pi Auto Market 2026 هي منصة وسيطة تجريبية. جميع التفاهمات تتم عبر التواصل المباشر، ولا نطلب أبداً كلمات السر للمحافظ.</p>
     </div>
+</div>
 
 </body>
 </html>
