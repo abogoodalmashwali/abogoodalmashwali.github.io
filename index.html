@@ -3,43 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pi Auto Market 2026 — منصة الوسيط الآمن لبيع وشراء السيارات بعملة Pi</title>
-    <meta name="theme-color" content="#5b2c91">
+    <title>Pi Auto Market 2026</title>
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <style>
-        body { font-family: 'Arial', sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; text-align: center; color: #333; }
+        body { font-family: 'Arial', sans-serif; background-color: #f8f9fa; margin: 0; text-align: center; color: #333; }
         header { background-color: #5b2c91; color: white; padding: 25px; border-bottom: 5px solid #ffa000; }
-        .car-img { width: 100%; height: 200px; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #e8e0f5; }
-        
-        /* تم تعديل المسارات هنا لتعمل مباشرة على GitHub */
-        .car-img.c1 { background-image: url('lexus-lx.png'); }
-        .car-img.c2 { background-image: url('toyota-camry.png'); }
-        .car-img.c3 { background-image: url('toyota-hilux.png'); }
-        .car-img.c4 { background-image: url('hyundai-elantra.png'); }
-
-        .card { background: white; border-radius: 12px; padding: 20px; margin: 15px auto; max-width: 90%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-right: 6px solid #ffa000; text-align: right; }
-        .pi-pay-btn { display: block; margin-top: 14px; background-color: #5b2c91; color: white; text-align: center; padding: 10px; border-radius: 8px; border: none; width: 100%; font-weight: bold; cursor: pointer; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; max-width: 1000px; margin: auto; }
+        .car { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        /* تم تحديث المسارات لتعمل مع ملفاتك في GitHub مباشرة */
+        .car-img { width: 100%; height: 200px; background-size: contain; background-repeat: no-repeat; background-position: center; }
+        .pi-pay-btn { background-color: #5b2c91; color: white; padding: 12px; border-radius: 8px; border: none; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .legal { background: #f9f9f9; padding: 20px; margin-top: 30px; border-top: 1px solid #ddd; font-size: 14px; color: #666; }
     </style>
 </head>
 <body>
 <header>
-    <h1>منصة الوسيط الآمن لبيع وشراء السيارات باستخدام عملة Pi 🚗</h1>
-    <p style="margin-top: 10px; font-size: 1.1em; color: #ffeb3b; font-weight: bold;">👤 إشراف: أبو جود المشولي</p>
+    <h1>منصة الوسيط الآمن لبيع وشراء السيارات بعملة Pi 🚗</h1>
+    <p>إشراف: أبو جود المشولي</p>
 </header>
 
 <div class="gallery">
     <div class="car">
-        <div class="car-img c1"></div>
-        <div class="car-body">
-            <h3>Lexus LX 2026</h3>
-            <button class="pi-pay-btn" onclick="alert('جاري الاتصال بـ Pi...')">π ادفع 1 Pi للاستفسار</button>
-        </div>
+        <div class="car-img" style="background-image: url('lexus-lx.png');"></div>
+        <h3>Lexus LX 2026</h3>
+        <button class="pi-pay-btn" onclick="alert('جاري الاتصال...')">π ادفع 1 Pi للاستفسار</button>
     </div>
-    <!-- بقية البطاقات بنفس الطريقة -->
+    <div class="car">
+        <div class="car-img" style="background-image: url('toyota-camry.png');"></div>
+        <h3>Toyota Camry 2026</h3>
+        <button class="pi-pay-btn" onclick="alert('جاري الاتصال...')">π ادفع 1 Pi للاستفسار</button>
+    </div>
+    <div class="car">
+        <div class="car-img" style="background-image: url('toyota-hilux.png');"></div>
+        <h3>Toyota Hilux 2026</h3>
+        <button class="pi-pay-btn" onclick="alert('جاري الاتصال...')">π ادفع 1 Pi للاستفسار</button>
+    </div>
+    <div class="car">
+        <div class="car-img" style="background-image: url('hyundai-elantra.png');"></div>
+        <h3>Hyundai Elantra 2026</h3>
+        <button class="pi-pay-btn" onclick="alert('جاري الاتصال...')">π ادفع 1 Pi للاستفسار</button>
+    </div>
 </div>
 
-<script>
-    Pi.init({ version: "2.0", sandbox: true });
-</script>
+<div class="legal">
+    <h4>🛡️ سياسة الخصوصية وإخلاء المسؤولية</h4>
+    <p>نحن منصة وساطة تقنية. لا نطلب بيانات محفظتك. جميع العمليات تجريبية لغرض العرض فقط.</p>
+</div>
+
+<script>Pi.init({ version: "2.0", sandbox: true });</script>
 </body>
 </html>
