@@ -2,58 +2,155 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Pi Auto Market 2026</title>
-    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Auto Market 2026 — منصة الوسيط الآمن لبيع وشراء السيارات بعملة Pi</title>
+    <meta name="description" content="منصة الوسيط الآمن لبيع وشراء السيارات الفخمة باستخدام عملة Pi Network. حاسبة أسعار حية، معرض سيارات 2026، وطلبات شراء مباشرة عبر واتساب.">
+    <meta name="theme-color" content="#5b2c91">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Pi Auto Market 2026">
+    <meta property="og:title" content="Pi Auto Market 2026 — منصة الوسيط الآمن لشراء السيارات بعملة Pi">
+    <meta property="og:description" content="اشترِ وبع السيارات الفخمة بعملة Pi بأمان تام عبر وسيطك المعتمد. حاسبة أسعار حية، معرض حصري لموديلات 2026، وتواصل فوري عبر واتساب.">
+    <meta property="og:image" content="og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta property="og:image:alt" content="Pi Auto Market 2026 — منصة بيع السيارات بعملة Pi">
+    <meta property="og:locale" content="ar_AR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pi Auto Market 2026 — منصة الوسيط الآمن لشراء السيارات بعملة Pi">
+    <meta name="twitter:description" content="اشترِ وبع السيارات الفخمة بعملة Pi بأمان تام عبر وسيطك المعتمد.">
+    <meta name="twitter:image" content="og-preview.png">
+
+    <link rel="icon" type="image/png" href="og-preview.png">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Pi Network, Pi Auto Market, شراء سيارات بـ Pi, بيع سيارات بعملة Pi, وسيط آمن, GCV, سيارات 2026, Pi cryptocurrency cars, وكالات Pi">
     <style>
-        body { font-family: sans-serif; background-color: #f8f9fa; text-align: center; }
-        header { background-color: #5b2c91; color: white; padding: 20px; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
-        .car { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .car img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; }
-        .btn-pay { background-color: #5b2c91; color: white; border: none; padding: 10px; width: 100%; border-radius: 8px; margin-top: 10px; }
-        .legal { background: #fff; padding: 20px; margin: 20px; border-radius: 10px; border-top: 5px solid #ffa000; }
+        body { font-family: 'Arial', sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; text-align: center; color: #333; }
+        header { background-color: #5b2c91; color: white; padding: 25px; border-bottom: 5px solid #ffa000; }
+        header h1 { margin: 0 0 10px; font-size: 1.6em; line-height: 1.4; }
+        .hero { padding: 40px 20px; background: white; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .card { background: white; border-radius: 12px; padding: 20px; margin: 15px auto; max-width: 90%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-right: 6px solid #ffa000; text-align: right; }
+        .btn-wa { background-color: #25d366; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-block; margin-top: 20px; }
+        .gallery-section { padding: 30px 15px; }
+        .gallery-section h2 { color: #5b2c91; margin-bottom: 5px; }
+        .gallery-section .subtitle { color: #777; margin-bottom: 25px; font-size: 0.95em; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; padding: 0 10px; }
+        .car { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.08); text-align: right; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .car:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+        .car-img { width: 100%; height: 200px; background-size: cover; background-position: center; background-repeat: no-repeat; }
+        .car-img.c1 { background-image: url('cars/lexus-lx.png'); }
+        .car-img.c2 { background-image: url('cars/toyota-camry.png'); }
+        .car-img.c3 { background-image: url('cars/toyota-hilux.png'); }
+        .car-img.c4 { background-image: url('cars/hyundai-elantra.png'); }
+        .car-body { padding: 18px; }
+        .car-body h3 { margin: 0 0 6px; color: #333; }
+        .car-body .desc { color: #666; font-size: 0.9em; margin: 0 0 12px; }
+        .car-price { color: #5b2c91; font-weight: bold; font-size: 1.15em; padding-top: 10px; border-top: 1px dashed #eee; }
+        .btn-request { display: block; margin-top: 14px; background-color: #25d366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.95em; }
+        .btn-request:hover { background-color: #1ebe57; }
+        .calc { background: white; max-width: 520px; margin: 0 auto 30px; padding: 22px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); border-top: 5px solid #5b2c91; text-align: right; }
+        .calc h3 { margin: 0 0 6px; color: #5b2c91; }
+        .calc .gcv-note { color: #888; font-size: 0.85em; margin: 0 0 14px; }
+        .calc .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .calc input { flex: 1; min-width: 140px; padding: 12px 14px; border: 2px solid #eee; border-radius: 10px; font-size: 1em; direction: ltr; text-align: left; }
+        .calc select { padding: 12px 10px; border: 2px solid #eee; border-radius: 10px; font-size: 1em; background: white; cursor: pointer; font-weight: bold; color: #5b2c91; }
+        .calc .result { margin-top: 14px; padding: 14px; background: #f3eefb; border-radius: 10px; color: #5b2c91; font-weight: bold; font-size: 1.15em; text-align: center; }
+        .calc .wa-btn { background: #25d366; color: white; border: none; padding: 12px 18px; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 0.95em; text-decoration: none; display: inline-block; transition: background 0.2s; }
+        .order-section { padding: 30px 15px; }
+        .order-section h2 { color: #5b2c91; margin-bottom: 5px; }
+        .order-section .subtitle { color: #777; margin-bottom: 25px; font-size: 0.95em; }
+        .order-form { background: white; max-width: 520px; margin: 0 auto; padding: 28px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); border-top: 5px solid #ffa000; text-align: right; }
+        .order-form .submit-btn { width: 100%; background-color: #25d366; color: white; padding: 14px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.05em; margin-top: 6px; }
+        .order-form .submit-btn:hover { background-color: #1ebe57; }
+        body, .hero, .card, .car, .calc, .order-form { transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+        .theme-toggle { position: fixed; top: 14px; left: 14px; z-index: 1000; background: rgba(255,255,255,0.18); color: white; border: 2px solid rgba(255,255,255,0.35); padding: 8px 14px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 0.85em; backdrop-filter: blur(6px); }
+        body.dark { background-color: #121212; color: #e8e8e8; }
+        body.dark header { background-color: #2a1247; }
+        body.dark .hero, body.dark .card, body.dark .car, body.dark .calc, body.dark .order-form { background: #1d1d1d; }
+        .demo-notice { background: #fff3cd; border: 2px solid #ffc107; padding: 18px 20px; margin: 20px auto; max-width: 90%; border-radius: 12px; text-align: center; color: #856404; }
+        .rating-section { background: white; max-width: 520px; margin: 30px auto; padding: 28px; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); border-top: 5px solid #ffa000; text-align: center; }
+        .whatsapp-direct-btn { display: inline-block; background-color: #25d366; color: white; padding: 13px 32px; border-radius: 50px; text-decoration: none; font-weight: bold; }
+        .legal-disclaimer { background-color: #f9f9f9; padding: 30px 20px; text-align: center; border-top: 1px solid #ddd; margin-top: 40px; font-family: inherit; }
+        .float-wa { position: fixed; bottom: 22px; left: 22px; z-index: 1000; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(37,211,102,0.45); text-decoration: none; font-size: 30px; }
     </style>
 </head>
 <body>
+<button type="button" class="theme-toggle" id="themeToggle">🌙 الوضع الليلي</button>
+<a href="https://wa.me/967775118667" class="float-wa" target="_blank" rel="noopener">💬</a>
 
 <header>
-    <h1>منصة Pi Auto Market 2026</h1>
-    <p>إشراف: أبو جود المشولي</p>
+    <h1>منصة الوسيط الآمن لبيع وشراء السيارات باستخدام عملة Pi 🚗</h1>
+    <p>وسيطك المعتمد لربطك بالوكالات العالمية عبر شبكة Pi</p>
+    <p style="margin-top: 10px; font-size: 1.1em; color: #ffeb3b; font-weight: bold;">👤 إشراف: أبو جود المشولي</p>
 </header>
+<div class="hero">
+    <h2>نحن بوابتك للشركات التي تقبل Pi</h2>
+    <a href="https://wa.me/967775118667" class="btn-wa">ادفع 1 Pi</a>
+</div>
 
-<div class="gallery">
-    <!-- سيارة 1 -->
-    <div class="car">
-        <img src="lexus-lx.png" alt="Lexus">
-        <h3>Lexus LX 2026</h3>
-        <button class="btn-pay" onclick="createPiPayment('Lexus LX 2026')">ادفع 1 Pi للاستفسار</button>
-    </div>
-    <!-- سيارة 2 -->
-    <div class="car">
-        <img src="hyundai-elantra.png" alt="Hyundai">
-        <h3>Hyundai Elantra</h3>
-        <button class="btn-pay" onclick="createPiPayment('Hyundai Elantra')">ادفع 1 Pi للاستفسار</button>
-    </div>
-    <!-- سيارة 3 -->
-    <div class="car">
-        <img src="toyota-camry.png" alt="Toyota">
-        <h3>Toyota Camry</h3>
-        <button class="btn-pay" onclick="createPiPayment('Toyota Camry')">ادفع 1 Pi للاستفسار</button>
+<div class="demo-notice">
+    <h3>📢 تنبيه هام وزيادة في المصداقية</h3>
+    <p>الصور والأسعار المعروضة هي نماذج تجريبية للمشروع. نحن نقوم حالياً ببناء المنصة التقنية والبحث عن شراكات عالمية رسمية تقبل الدفع بعملة Pi.</p>
+</div>
+
+<div class="gallery-section">
+    <h2>🚘 معرض السيارات الفخمة</h2>
+    <div class="gallery">
+        <div class="car">
+            <div class="car-img c1"></div>
+            <div class="car-body">
+                <h3>Lexus LX 2026</h3>
+                <a class="btn-request" target="_blank" href="https://wa.me/967775118667">ادفع 1 Pi</a>
+            </div>
+        </div>
+        <div class="car">
+            <div class="car-img c2"></div>
+            <div class="car-body">
+                <h3>Toyota Camry 2026</h3>
+                <a class="btn-request" target="_blank" href="https://wa.me/967775118667">ادفع 1 Pi</a>
+            </div>
+        </div>
+        <div class="car">
+            <div class="car-img c3"></div>
+            <div class="car-body">
+                <h3>Toyota Hilux 2026</h3>
+                <a class="btn-request" target="_blank" href="https://wa.me/967775118667">ادفع 1 Pi</a>
+            </div>
+        </div>
+        <div class="car">
+            <div class="car-img c4"></div>
+            <div class="car-body">
+                <h3>Hyundai Elantra 2026</h3>
+                <a class="btn-request" target="_blank" href="https://wa.me/967775118667">ادفع 1 Pi</a>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="legal">
-    <h3>🔒 سياسة الخصوصية</h3>
-    <p>هدفنا الوساطة التقنية الآمنة فقط عبر شبكة Pi.</p>
+<div class="order-section">
+    <h2>📝 طلب شراء سيارة</h2>
+    <form class="order-form" onsubmit="return false;">
+        <button type="button" onclick="window.open('https://wa.me/967775118667', '_blank')" class="submit-btn">ادفع 1 Pi</button>
+    </form>
+</div>
+
+<div class="rating-section">
+    <a href="https://wa.me/967775118667" class="whatsapp-direct-btn">ادفع 1 Pi</a>
+</div>
+
+<div class="legal-disclaimer">
     <h4>⚖️ إخلاء مسؤولية قانوني</h4>
-    <p>منصة تجريبية، لا نطلب كلمة السر لمحفظتك أبداً.</p>
+    <p>منصة <strong>Pi Auto Market 2026</strong> هي منصة وسيطة لعرض السيارات. جميع التفاهمات تتم عبر التواصل المباشر لضمان أمان وخصوصية الجميع.</p>
 </div>
 
 <script>
-    Pi.init({ version: "2.0", sandbox: true });
-    function createPiPayment(carName) {
-        Pi.createPayment({ amount: 1, memo: "استفسار: " + carName }, { onSuccess: function() { alert("تم الدفع!"); } });
-    }
+    // سكربت الوضع الليلي والوظائف
+    var btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', function () {
+        document.body.classList.toggle('dark');
+        btn.innerHTML = document.body.classList.contains('dark') ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي';
+    });
 </script>
 </body>
 </html>
