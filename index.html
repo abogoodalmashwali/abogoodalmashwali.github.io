@@ -7,7 +7,7 @@
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        .car-card { border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 10px; }
+        .car-card { border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 10px; display: inline-block; width: 80%; }
         button { background-color: #5c41f2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
     </style>
 </head>
@@ -22,8 +22,14 @@
     </div>
 
     <script>
-        // تهيئة الـ SDK
-        Pi.init({ version: "2.0", sandbox: true });
+        // طلب المصادقة مع صلاحية المدفوعات
+        Pi.authenticate(['payments'], (user, scopes) => {
+            console.log("تم تسجيل الدخول بنجاح. المستخدم: " + user.username);
+            // التهيئة بعد المصادقة الناجحة
+            Pi.init({ version: "2.0", sandbox: true });
+        }, (err) => {
+            alert("فشل تسجيل الدخول: " + err);
+        });
 
         async function payWithPi() {
             try {
@@ -33,7 +39,7 @@
                     metadata: { orderId: "12345" },
                 }, {
                     onReadyForServerApproval: (paymentId) => {
-                        console.log("جاري الموافقة على العملية", paymentId);
+                        console.log("جاري الموافقة", paymentId);
                     },
                     onReadyForServerCompletion: (paymentId, txid) => {
                         alert("اكتمل الدفع بنجاح! رقم العملية: " + txid);
@@ -42,11 +48,11 @@
                         alert("تم إلغاء عملية الدفع.");
                     },
                     onError: (error, payment) => {
-                        alert("حدث خطأ أثناء الدفع: " + error);
+                        alert("خطأ أثناء الدفع: " + error);
                     }
                 });
             } catch (err) {
-                alert("خطأ في الاتصال بشبكة Pi: " + err);
+                alert("خطأ في الاتصال: " + err);
             }
         }
     </script>
