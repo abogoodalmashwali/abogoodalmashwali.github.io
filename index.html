@@ -1,42 +1,5 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>Pi Auto Market 2026</title>
-    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-</head>
-<body>
-    <h1>منصة الوسيط الآمن</h1>
-    <button id="pay-btn" style="display:none;" onclick="payWithPi()">ادفع 1 Pi</button>
-    <p id="status">جاري الاتصال بشبكة Pi...</p>
-
-    <script>
-        // تهيئة الـ SDK فوراً عند تحميل الصفحة
-        Pi.init({ version: "2.0", sandbox: true });
-
-        // مصادقة المستخدم
-        Pi.authenticate(['payments'], (user, scopes) => {
-            document.getElementById('status').innerText = "تم تسجيل الدخول: " + user.username;
-            document.getElementById('pay-btn').style.display = "block"; // إظهار زر الدفع بعد المصادقة
-        }, (err) => {
-            document.getElementById('status').innerText = "فشل الاتصال: " + err;
-        });
-
-        async function payWithPi() {
-            try {
-                const payment = await Pi.createPayment({
-                    amount: 1.0,
-                    memo: "شراء سيارة - Pi Auto Market 2026",
-                    metadata: { orderId: "12345" },
-                }, {
-                    onReadyForServerCompletion: (paymentId, txid) => alert("نجاح! المعرف: " + txid),
-                    onCancel: () => alert("تم الإلغاء"),
-                    onError: (err) => alert("خطأ: " + err)
-                });
-            } catch (err) {
-                alert("خطأ في تشغيل الدفع: " + err);
-            }
-        }
-    </script>
-</body>
-</html>
+Pi.init({m5ssgwfw5lb6yhwcrwir7i6ll5tiv7cpt5uj6utbgojvhvyvtkqnams8umlccckd 
+    version: "2.0", 
+    sandbox: true, 
+    appID: "YOUR_APP_ID" 
+});
