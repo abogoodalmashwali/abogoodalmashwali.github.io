@@ -6,27 +6,37 @@
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 </head>
 <body>
-    <h1>منصة الوسيط الآمن للسيارات</h1>
+    <h1>منصة الوسيط الآمن</h1>
     <div id="app">
-        <p id="status">جاري التهيئة...</p>
+        <p id="status">جاري المحاولة...</p>
         <button id="pay-btn" style="display:none;" onclick="payWithPi()">ادفع 1 Pi</button>
     </div>
 
     <script>
-        // تهيئة الـ SDK
-        Pi.init({ 
-            version: "2.0", 
-            sandbox: true, 
-            appID: "m5ssgwfw5lb6yhwcrwir7i6ll5tiv7cpt5uj6utbge" 
-        });
+        // إعداد التهيئة
+        const initPi = () => {
+            try {
+                Pi.init({ 
+                    version: "2.0", 
+                    sandbox: true, 
+                    appID: "m5ssgwfw5lb6yhwcrwir7i6ll5tiv7cpt5uj6utbge" 
+                });
+                
+                document.getElementById('status').innerText = "تمت التهيئة، جاري المصادقة...";
+                
+                Pi.authenticate(['payments'], (user, scopes) => {
+                    document.getElementById('status').innerText = "مرحباً: " + user.username;
+                    document.getElementById('pay-btn').style.display = "block";
+                }, (err) => {
+                    document.getElementById('status').innerText = "خطأ في المصادقة (تأكد من إعدادات الموقع في بوابة المطورين): " + err;
+                });
+            } catch (e) {
+                document.getElementById('status').innerText = "خطأ في تشغيل SDK: " + e.message;
+            }
+        };
 
-        // المصادقة
-        Pi.authenticate(['payments'], (user, scopes) => {
-            document.getElementById('status').innerText = "أهلاً بك: " + user.username;
-            document.getElementById('pay-btn').style.display = "block";
-        }, (err) => {
-            document.getElementById('status').innerText = "خطأ في المصادقة: " + err;
-        });
+        // تشغيل التهيئة بعد تأخير لضمان تحميل المكتبة
+        window.addEventListener('load', () => setTimeout(initPi, 1500));
 
         async function payWithPi() {
             try {
@@ -37,35 +47,12 @@
                 }, {
                     onReadyForServerCompletion: (id, txid) => alert("نجاح! المعرف: " + txid),
                     onCancel: () => alert("تم الإلغاء"),
-                    onError: (err) => alert("خطأ: " + err)
+                    onError: (err) => alert("خطأ في الدفع: " + err)
                 });
             } catch (err) {
-                alert("خطأ في الدفع: " + err);
+                alert("تعذر طلب الدفع: " + err);
             }
         }
-    <script>
-    // تهيئة الـ SDK
-    Pi.init({ 
-        version: "2.0", 
-        sandbox: true, 
-        appID: "m5ssgwfw5lb6yhwcrwir7i6ll5tiv7cpt5uj6utbge" 
-    });
-
-    // إضافة تأخير بسيط ومحاولة مصادقة
-    setTimeout(() => {
-        document.getElementById('status').innerText = "جاري المصادقة...";
-        Pi.authenticate(['payments'], (user, scopes) => {
-            document.getElementById('status').innerText = "أهلاً بك: " + user.username;
-            document.getElementById('pay-btn').style.display = "block";
-        }, (err) => {
-            document.getElementById('status').innerText = "خطأ: " + err;
-        });
-    }, 2000); // ينتظر ثانيتين ثم يحاول الاتصال
-
-    async function payWithPi() {
-        // ... نفس دالة الدفع السابقة ...
-    }
-</script>
-
+    </script>
 </body>
 </html>
