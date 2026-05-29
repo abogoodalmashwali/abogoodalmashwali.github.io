@@ -43,6 +43,29 @@
                 alert("خطأ في الدفع: " + err);
             }
         }
-    </script>
+    <script>
+    // تهيئة الـ SDK
+    Pi.init({ 
+        version: "2.0", 
+        sandbox: true, 
+        appID: "m5ssgwfw5lb6yhwcrwir7i6ll5tiv7cpt5uj6utbge" 
+    });
+
+    // إضافة تأخير بسيط ومحاولة مصادقة
+    setTimeout(() => {
+        document.getElementById('status').innerText = "جاري المصادقة...";
+        Pi.authenticate(['payments'], (user, scopes) => {
+            document.getElementById('status').innerText = "أهلاً بك: " + user.username;
+            document.getElementById('pay-btn').style.display = "block";
+        }, (err) => {
+            document.getElementById('status').innerText = "خطأ: " + err;
+        });
+    }, 2000); // ينتظر ثانيتين ثم يحاول الاتصال
+
+    async function payWithPi() {
+        // ... نفس دالة الدفع السابقة ...
+    }
+</script>
+
 </body>
 </html>
