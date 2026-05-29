@@ -2,33 +2,24 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الوسيط الآمن - Pi Auto Market 2026</title>
+    <title>Pi Auto Market 2026</title>
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        .car-card { border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 10px; display: inline-block; width: 80%; }
-        button { background-color: #5c41f2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
-    </style>
 </head>
 <body>
-
-    <h1>منصة الوسيط الآمن للسيارات</h1>
-    
-    <div class="car-card">
-        <h3>سيارة للتجربة</h3>
-        <p>السعر: 1 Pi</p>
-        <button onclick="payWithPi()">ادفع 1 Pi</button>
-    </div>
+    <h1>منصة الوسيط الآمن</h1>
+    <button id="pay-btn" style="display:none;" onclick="payWithPi()">ادفع 1 Pi</button>
+    <p id="status">جاري الاتصال بشبكة Pi...</p>
 
     <script>
-        // طلب المصادقة مع صلاحية المدفوعات
+        // تهيئة الـ SDK فوراً عند تحميل الصفحة
+        Pi.init({ version: "2.0", sandbox: true });
+
+        // مصادقة المستخدم
         Pi.authenticate(['payments'], (user, scopes) => {
-            console.log("تم تسجيل الدخول بنجاح. المستخدم: " + user.username);
-            // التهيئة بعد المصادقة الناجحة
-            Pi.init({ version: "2.0", sandbox: true });
+            document.getElementById('status').innerText = "تم تسجيل الدخول: " + user.username;
+            document.getElementById('pay-btn').style.display = "block"; // إظهار زر الدفع بعد المصادقة
         }, (err) => {
-            alert("فشل تسجيل الدخول: " + err);
+            document.getElementById('status').innerText = "فشل الاتصال: " + err;
         });
 
         async function payWithPi() {
@@ -38,21 +29,12 @@
                     memo: "شراء سيارة - Pi Auto Market 2026",
                     metadata: { orderId: "12345" },
                 }, {
-                    onReadyForServerApproval: (paymentId) => {
-                        console.log("جاري الموافقة", paymentId);
-                    },
-                    onReadyForServerCompletion: (paymentId, txid) => {
-                        alert("اكتمل الدفع بنجاح! رقم العملية: " + txid);
-                    },
-                    onCancel: (paymentId) => {
-                        alert("تم إلغاء عملية الدفع.");
-                    },
-                    onError: (error, payment) => {
-                        alert("خطأ أثناء الدفع: " + error);
-                    }
+                    onReadyForServerCompletion: (paymentId, txid) => alert("نجاح! المعرف: " + txid),
+                    onCancel: () => alert("تم الإلغاء"),
+                    onError: (err) => alert("خطأ: " + err)
                 });
             } catch (err) {
-                alert("خطأ في الاتصال: " + err);
+                alert("خطأ في تشغيل الدفع: " + err);
             }
         }
     </script>
